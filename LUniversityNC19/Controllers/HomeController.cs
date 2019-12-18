@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LUniversityNC19.Models;
 using Microsoft.Extensions.Configuration;
+using LUniversityNC19.Services;
 
 namespace LUniversityNC19.Controllers
 {
@@ -14,17 +15,21 @@ namespace LUniversityNC19.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration config;
+        private readonly ISettings settings;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, ISettings settings)
         {
             _logger = logger;
             this.config = config;
+            this.settings = settings;
         }
 
         public IActionResult Index()
         {
-            var capacity = config.GetValue<int>("UniversitySettings:Capacity");
-            ViewBag.Capacity = capacity;
+            //var capacity = config.GetValue<int>("UniversitySettings:Capacity");
+            //ViewBag.Capacity = capacity;
+            ViewBag.Capacity = settings.Capacity;
+
             return View();
         }
 
