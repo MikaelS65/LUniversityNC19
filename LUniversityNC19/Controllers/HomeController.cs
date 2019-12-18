@@ -28,7 +28,7 @@ namespace LUniversityNC19.Controllers
         {
             //var capacity = config.GetValue<int>("UniversitySettings:Capacity");
             //ViewBag.Capacity = capacity;
-            ViewBag.Capacity = settings.Capacity;
+            //ViewBag.Capacity = settings.Capacity;
 
             return View();
         }
