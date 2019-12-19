@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using LUniversityNC19.Models;
 
 namespace LUniversityNC19
 {
@@ -27,6 +29,9 @@ namespace LUniversityNC19
             services.AddControllersWithViews();
 
             services.AddTransient<ISettings, UniversitySettings>();
+
+            services.AddDbContext<LUniversityNC19Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("LUniversityNC19Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
