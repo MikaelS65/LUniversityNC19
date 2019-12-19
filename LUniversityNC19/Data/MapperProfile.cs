@@ -13,6 +13,15 @@ namespace LUniversityNC19.Data
         public MapperProfile()
         {
             CreateMap<Student, StudentListViewModel>();
+            CreateMap<Student, StudentDTO>();
+
+            CreateMap<Student, StudentDetailsViewModel>()
+                .ForMember(
+                        dest => dest.Attending,     //opt => opt.Ignore()
+                        from => from.MapFrom(s => s.Enrollments.Count))
+                .ForMember(
+                       dest => dest.Courses,
+                       from => from.MapFrom(s => s.Enrollments.Select(e => e.Course).ToList()));
         }
     }
 }

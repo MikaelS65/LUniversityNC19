@@ -42,10 +42,14 @@ namespace LUniversityNC19.Controllers
             //                })
             //                .ToListAsync();
 
-          //  var model = await _context.Students.ProjectTo<StudentListViewModel>                                     (mapper.ConfigurationProvider)
-                                    // .ToListAsync();
+            //  var model = await _context.Students.ProjectTo<StudentListViewModel>                                     (mapper.ConfigurationProvider)
+            // .ToListAsync();
 
-          //  var model2 = mapper.Map<IEnumerable<StudentListViewModel>>(_context.Students.Include(s => s.Address));
+            //  var model2 = mapper.Map<IEnumerable<StudentListViewModel>>(_context.Students.Include(s => s.Address));
+
+            var dto = mapper.Map<IEnumerable<StudentDTO>>(_context.Students.Where(s => s.Email.StartsWith("D")).ToList());
+
+            var dto2 = mapper.ProjectTo<StudentDTO>(_context.Students.Where(s => s.Email.StartsWith("D"))).ToList();
 
 
             var model3 = await mapper.ProjectTo<StudentListViewModel>                                       (_context.Students).ToListAsync();
@@ -61,9 +65,7 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                                      .Include(s => s.Address)
-                                     
+            var student = await mapper.ProjectTo<StudentDetailsViewModel>(_context.Students)                   
                 .FirstOrDefaultAsync(m => m.Id == id);
 
 
