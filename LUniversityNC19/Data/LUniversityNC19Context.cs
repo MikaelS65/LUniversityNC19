@@ -13,6 +13,9 @@ namespace LUniversityNC19.Models
         {
         }
 
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }

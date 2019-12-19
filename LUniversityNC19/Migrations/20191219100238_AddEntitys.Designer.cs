@@ -3,14 +3,16 @@ using LUniversityNC19.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LUniversityNC19.Migrations
 {
     [DbContext(typeof(LUniversityNC19Context))]
-    partial class LUniversityNC19ContextModelSnapshot : ModelSnapshot
+    [Migration("20191219100238_AddEntitys")]
+    partial class AddEntitys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace LUniversityNC19.Migrations
                     b.HasIndex("StudentId")
                         .IsUnique();
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("LUniversityNC19.Models.Course", b =>
@@ -57,7 +59,7 @@ namespace LUniversityNC19.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Course");
                 });
 
             modelBuilder.Entity("LUniversityNC19.Models.Enrollment", b =>
@@ -82,7 +84,7 @@ namespace LUniversityNC19.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Enrollments");
+                    b.ToTable("Enrollment");
                 });
 
             modelBuilder.Entity("LUniversityNC19.Models.Student", b =>
@@ -91,9 +93,6 @@ namespace LUniversityNC19.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Avatar")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -106,7 +105,7 @@ namespace LUniversityNC19.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("LUniversityNC19.Models.Address", b =>

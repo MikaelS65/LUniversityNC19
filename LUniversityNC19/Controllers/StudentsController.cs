@@ -21,7 +21,7 @@ namespace LUniversityNC19.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Student.ToListAsync());
+            return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -32,7 +32,7 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -53,7 +53,7 @@ namespace LUniversityNC19.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,Avatar,FirstName,LastName,Email")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student.FindAsync(id);
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -85,7 +85,7 @@ namespace LUniversityNC19.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Email")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Avatar,FirstName,LastName,Email")] Student student)
         {
             if (id != student.Id)
             {
@@ -123,7 +123,7 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Student
+            var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -138,15 +138,15 @@ namespace LUniversityNC19.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.Student.FindAsync(id);
-            _context.Student.Remove(student);
+            var student = await _context.Students.FindAsync(id);
+            _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-            return _context.Student.Any(e => e.Id == id);
+            return _context.Students.Any(e => e.Id == id);
         }
     }
 }
