@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LUniversityNC19.Models;
+using LUniversityNC19.ViewModels;
 
 namespace LUniversityNC19.Controllers
 {
@@ -21,7 +22,20 @@ namespace LUniversityNC19.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var model = await _context.Students
+                            .Include(s => s.Address)
+                            .Select(s => new StudentListViewModel
+                            {
+                                Id = s.Id,
+                                Avatar = s.Avatar,
+                                FullName = s.FullName,
+                                Street = s.Address.Street,
+                                City = s.Address.City,
+                                ZipCode = s.Address.ZipCode
+                            })
+                            .ToListAsync();
+
+            return View(model);
         }
 
         // GET: Students/Details/5
@@ -43,7 +57,7 @@ namespace LUniversityNC19.Controllers
         }
 
         // GET: Students/Create
-        public IActionResult Create()
+        public IActionResult Add()
         {
             return View();
         }
@@ -53,7 +67,7 @@ namespace LUniversityNC19.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Avatar,FirstName,LastName,Email")] Student student)
+        public async Task<IActionResult> Add([Bind("Id,Avatar,FirstName,LastName,Email")] Student student)
         {
             if (ModelState.IsValid)
             {
