@@ -16,12 +16,12 @@ namespace LUniversityNC19.Data
             var option = services.GetRequiredService<DbContextOptions<LUniversityNC19Context>>();
             using(var context = new LUniversityNC19Context(option))
             {
-                //if (context.Students.Any())
-                //{
-                //    context.Students.RemoveRange(context.Students);
-                //    context.Courses.RemoveRange(context.Courses);
-                //    context.Enrollments.RemoveRange(context.Enrollments);
-                //}
+                if (context.Students.Any())
+                {
+                    context.Students.RemoveRange(context.Students);
+                    context.Courses.RemoveRange(context.Courses);
+                    context.Enrollments.RemoveRange(context.Enrollments);
+                }
 
                 var fake = new Faker("sv");
 
@@ -49,6 +49,39 @@ namespace LUniversityNC19.Data
                 }
 
                 context.AddRange(students);
+
+                var courses = new List<Course>();
+
+                for (int i = 0; i < 20; i++)
+                {
+                    var course = new Course
+                    {
+                        Title = fake.Company.CatchPhrase()
+                    };
+                    courses.Add(course);
+                }
+                context.AddRange(courses);
+
+                var enrollments = new List<Enrollment>();
+
+                foreach (var student in students)
+                {
+                    foreach (var course in courses)
+                    {
+                        if(fake.Random.Int(0,5) == 0)
+                        {
+                            var enrollment = new Enrollment
+                            {
+                                Course = course,
+                                Student = student,
+                                Grade = fake.Random.Int(1, 5)
+                            };
+                            enrollments.Add(enrollment);
+                        }
+                    }
+                }
+
+                context.AddRange(enrollments);
                 context.SaveChanges();
             }
         }
