@@ -9,6 +9,7 @@ using LUniversityNC19.Models;
 using LUniversityNC19.ViewModels;
 using Bogus;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace LUniversityNC19.Controllers
 {
@@ -28,20 +29,28 @@ namespace LUniversityNC19.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            var model = await _context.Students
-                            .Include(s => s.Address)
-                            .Select(s => new StudentListViewModel
-                            {
-                                Id = s.Id,
-                                Avatar = s.Avatar,
-                                FullName = s.FullName,
-                                Street = s.Address.Street,
-                                City = s.Address.City,
-                                ZipCode = s.Address.ZipCode
-                            })
-                            .ToListAsync();
+            //var model = await _context.Students
+            //                .Include(s => s.Address)
+            //                .Select(s => new StudentListViewModel
+            //                {
+            //                    Id = s.Id,
+            //                    Avatar = s.Avatar,
+            //                    FullName = s.FullName,
+            //                    Street = s.Address.Street,
+            //                    City = s.Address.City,
+            //                    ZipCode = s.Address.ZipCode
+            //                })
+            //                .ToListAsync();
 
-            return View(model);
+          //  var model = await _context.Students.ProjectTo<StudentListViewModel>                                     (mapper.ConfigurationProvider)
+                                    // .ToListAsync();
+
+          //  var model2 = mapper.Map<IEnumerable<StudentListViewModel>>(_context.Students.Include(s => s.Address));
+
+
+            var model3 = await mapper.ProjectTo<StudentListViewModel>                                       (_context.Students).ToListAsync();
+
+            return View(model3);
         }
 
         // GET: Students/Details/5
@@ -52,10 +61,10 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            //var student = await _context.Students
-            //                          .Include(s => s.Address)
-            //                          .Select(s => new Student)
-            //    .FirstOrDefaultAsync(m => m.Id == id);
+            var student = await _context.Students
+                                      .Include(s => s.Address)
+                                     
+                .FirstOrDefaultAsync(m => m.Id == id);
 
 
             if (student == null)

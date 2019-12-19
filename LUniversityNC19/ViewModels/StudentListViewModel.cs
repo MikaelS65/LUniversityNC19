@@ -10,9 +10,9 @@ namespace LUniversityNC19.ViewModels
         public int Id { get; set; }
         public string Avatar { get; set; }
         public string FullName { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string ZipCode { get; set; }
+        public string AddressStreet { get; set; }
+        public string AddressCity { get; set; }
+        public string AddressZipCode { get; set; }
 
     }
 }
