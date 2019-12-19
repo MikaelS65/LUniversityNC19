@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LUniversityNC19.Models;
 using LUniversityNC19.ViewModels;
+using Bogus;
+using AutoMapper;
 
 namespace LUniversityNC19.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly LUniversityNC19Context _context;
+        private readonly IMapper mapper;
+        private Faker faker;
 
-        public StudentsController(LUniversityNC19Context context)
+        public StudentsController(LUniversityNC19Context context, IMapper mapper)
         {
             _context = context;
+            this.mapper = mapper;
+            faker = new Faker("sv");
         }
 
         // GET: Students
@@ -46,8 +52,12 @@ namespace LUniversityNC19.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
+            //var student = await _context.Students
+            //                          .Include(s => s.Address)
+            //                          .Select(s => new Student)
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+
             if (student == null)
             {
                 return NotFound();
@@ -67,15 +77,29 @@ namespace LUniversityNC19.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,Avatar,FirstName,LastName,Email")] Student student)
+        public async Task<IActionResult> Add(StudentAddViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var student = new Student
+                {
+                    Avatar = faker.Internet.Avatar(),
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Address = new Address
+                    {
+                        Street = model.Street,
+                        City = model.City,
+                        ZipCode = model.ZipCode
+                    }
+                };
+
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(model);
         }
 
         // GET: Students/Edit/5

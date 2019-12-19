@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using LUniversityNC19.Models;
+using AutoMapper;
 
 namespace LUniversityNC19
 {
@@ -32,6 +33,8 @@ namespace LUniversityNC19
 
             services.AddDbContext<LUniversityNC19Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("LUniversityNC19Context")));
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
