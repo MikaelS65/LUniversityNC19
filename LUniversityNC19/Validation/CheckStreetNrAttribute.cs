@@ -18,7 +18,7 @@ namespace LUniversityNC19.Validation
             if(value is string input)
             {
                 var lastWord = input.Split().Last();
-                return int.TryParse(lastWord, out int n);
+                return int.TryParse(lastWord, out _);
             }
 
             return false;
