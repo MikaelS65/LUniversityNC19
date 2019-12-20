@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using LUniversityNC19.Models;
+using LUniversityNC19.Core.Models;
 using Microsoft.Extensions.Configuration;
 using LUniversityNC19.Services;
 

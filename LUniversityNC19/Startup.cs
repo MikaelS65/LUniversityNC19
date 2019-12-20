@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using LUniversityNC19.Models;
+using LUniversityNC19.Core.Models;
 using AutoMapper;
+using LUniversityNC19.Persistance;
 
 namespace LUniversityNC19
 {

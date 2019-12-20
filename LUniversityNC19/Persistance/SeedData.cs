@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using LUniversityNC19.Models;
+using LUniversityNC19.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LUniversityNC19.Data
+namespace LUniversityNC19.Persistance
 {
     public static class SeedData
     {

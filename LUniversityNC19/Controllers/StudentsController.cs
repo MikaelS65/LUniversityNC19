@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LUniversityNC19.Models;
-using LUniversityNC19.ViewModels;
 using Bogus;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using LUniversityNC19.Persistance;
+using LUniversityNC19.Core.ViewModels;
+using LUniversityNC19.Core.Models;
 
 namespace LUniversityNC19.Controllers
 {

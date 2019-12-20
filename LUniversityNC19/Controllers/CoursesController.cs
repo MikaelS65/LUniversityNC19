@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LUniversityNC19.Models;
+using LUniversityNC19.Core.Models;
+using LUniversityNC19.Persistance;
 
 namespace LUniversityNC19.Controllers
 {
