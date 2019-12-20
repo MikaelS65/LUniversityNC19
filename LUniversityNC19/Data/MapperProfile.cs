@@ -18,7 +18,7 @@ namespace LUniversityNC19.Data
 
             CreateMap<Student, StudentDetailsViewModel>()
                 .ForMember(
-                        dest => dest.Attending,     //opt => opt.Ignore()
+                        dest => dest.Attending,     
                         from => from.MapFrom(s => s.Enrollments.Count))
                 .ForMember(
                        dest => dest.Courses,

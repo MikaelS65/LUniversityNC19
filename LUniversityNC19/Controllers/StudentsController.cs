@@ -26,6 +26,17 @@ namespace LUniversityNC19.Controllers
             faker = new Faker("sv");
         }
 
+
+        public IActionResult CheckEmail(string email)
+        {
+            if(_context.Students.Any(s => s.Email == email))
+            {
+                return Json($"{email} is in use");
+            }
+
+            return Json(true);
+        }
+
         // GET: Students
         public async Task<IActionResult> Index()
         {
