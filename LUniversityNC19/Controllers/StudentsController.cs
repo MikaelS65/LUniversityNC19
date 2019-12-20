@@ -47,9 +47,9 @@ namespace LUniversityNC19.Controllers
 
             //  var model2 = mapper.Map<IEnumerable<StudentListViewModel>>(_context.Students.Include(s => s.Address));
 
-            var dto = mapper.Map<IEnumerable<StudentDTO>>(_context.Students.Where(s => s.Email.StartsWith("D")).ToList());
+           // var dto = mapper.Map<IEnumerable<StudentDTO>>(_context.Students.Where(s => s.Email.StartsWith("D")).ToList());
 
-            var dto2 = mapper.ProjectTo<StudentDTO>(_context.Students.Where(s => s.Email.StartsWith("D"))).ToList();
+            //var dto2 = mapper.ProjectTo<StudentDTO>(_context.Students.Where(s => s.Email.StartsWith("D"))).ToList();
 
 
             var model3 = await mapper.ProjectTo<StudentListViewModel>                                       (_context.Students).ToListAsync();

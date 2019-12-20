@@ -33,7 +33,10 @@ namespace LUniversityNC19.Controllers
             }
 
             var course = await _context.Courses
+                .Include(c => c.Enrollments)
+                .ThenInclude(e => e.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (course == null)
             {
                 return NotFound();
