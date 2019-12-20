@@ -1,10 +1,10 @@
-﻿using LUniversityNC19.Models;
+﻿using LUniversityNC19.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LUniversityNC19.ViewModels
+namespace LUniversityNC19.Core.ViewModels
 {
     public class StudentDetailsViewModel
     {

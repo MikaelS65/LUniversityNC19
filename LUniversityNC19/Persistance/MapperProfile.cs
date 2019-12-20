@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using LUniversityNC19.Models;
-using LUniversityNC19.ViewModels;
+using LUniversityNC19.Core.Models;
+using LUniversityNC19.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LUniversityNC19.Data
+namespace LUniversityNC19.Persistance
 {
     public class MapperProfile : Profile
     {

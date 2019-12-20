@@ -1,6 +1,6 @@
 using System;
 
-namespace LUniversityNC19.Models
+namespace LUniversityNC19.Core.Models
 {
     public class ErrorViewModel
     {

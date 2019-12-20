@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LUniversityNC19.ViewModels
+namespace LUniversityNC19.Core.ViewModels
 {
     public class StudentListViewModel
     {
