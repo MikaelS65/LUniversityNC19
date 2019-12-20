@@ -13,6 +13,7 @@ namespace LUniversityNC19.Data
         public MapperProfile()
         {
             CreateMap<Student, StudentListViewModel>();
+            CreateMap<Student, StudentAddViewModel>().ReverseMap();
             CreateMap<Student, StudentDTO>();
 
             CreateMap<Student, StudentDetailsViewModel>()
@@ -22,6 +23,18 @@ namespace LUniversityNC19.Data
                 .ForMember(
                        dest => dest.Courses,
                        from => from.MapFrom(s => s.Enrollments.Select(e => e.Course).ToList()));
+
+            //CreateMap<StudentAddViewModel, Student>()
+            //    .ForMember(
+            //           dest => dest.Enrollments, opt => opt.Ignore())
+            //    .ForPath(
+            //            dest => dest.Address,
+            //            from => from.MapFrom(model => new Address
+            //            {
+            //                City = model.AddressCity,
+            //                Street = model.AddressStreet,
+            //                ZipCode = model.AddressZipCode
+            //            }));
         }
     }
 }

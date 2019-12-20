@@ -92,19 +92,21 @@ namespace LUniversityNC19.Controllers
         {
             if (ModelState.IsValid)
             {
-                var student = new Student
-                {
-                    Avatar = faker.Internet.Avatar(),
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Address = new Address
-                    {
-                        Street = model.Street,
-                        City = model.City,
-                        ZipCode = model.ZipCode
-                    }
-                };
+                //var student = new Student
+                //{
+                //    Avatar = faker.Internet.Avatar(),
+                //    FirstName = model.FirstName,
+                //    LastName = model.LastName,
+                //    Email = model.Email,
+                //    Address = new Address
+                //    {
+                //        Street = model.Street,
+                //        City = model.City,
+                //        ZipCode = model.ZipCode
+                //    }
+                //};
+                var student = mapper.Map<Student>(model);
+                student.Avatar = faker.Internet.Avatar();
 
                 _context.Add(student);
                 await _context.SaveChangesAsync();
